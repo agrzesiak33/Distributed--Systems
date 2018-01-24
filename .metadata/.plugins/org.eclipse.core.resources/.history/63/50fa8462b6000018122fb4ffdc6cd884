@@ -1,0 +1,70 @@
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.Socket;
+
+public class HTTPWorker implements Runnable
+{
+	protected Socket clientSocket;
+	
+	public HTTPWorker(Socket socket)
+	{
+		this.clientSocket = socket;
+	}
+	
+	
+	@Override
+	public void run() {		
+		OutputStream out = null;
+		InputStream dataIn = null;
+		
+		try
+		{
+			// open data streams for input and output
+			dataIn = clientSocket.getInputStream();
+			out = clientSocket.getOutputStream();
+			
+			//	Read in the GET request coming from the client
+			byte[] buffer = new byte[2000];
+			dataIn.read(buffer);
+			String dataString =  new String(buffer);
+			
+			//	Send the data to the client in 2k chunks
+			buffer = new byte[2000];
+			
+			
+			
+			@SuppressWarnings("unused")
+			int fileLength;
+			while((fileLength = fileInput.read(buffer)) >= 0)
+			{
+				out.write(buffer);
+				out.flush();
+			}	
+		}
+		catch(FileNotFoundException e)
+		{
+			try {
+				System.out.println("Could not find the file. " + e.getLocalizedMessage());
+				out.write(header404.getBytes());
+				out.flush();
+			} catch (IOException e1) {}
+		} 
+		catch (IOException e) {
+			try {
+				out.write(header400.getBytes());
+			} catch (IOException e1) {}
+		}
+		System.out.println("All done");
+		try {
+			dataIn.close();
+			out.close();
+			fileInput.close();
+		} catch (Exception e) {}
+		
+	}
+
+}
