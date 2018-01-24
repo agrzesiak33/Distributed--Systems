@@ -37,7 +37,7 @@ public class GenericServer implements Runnable {
                 System.out.println("Waiting for connections on port #" + port);
                 socket = serverSocket.accept();
                 System.out.println("Connection with client established!");
-                new Thread(new Worker(socket)).start();
+                new Thread(new HTTPWorker(socket)).start();
             }
 
         } catch (IOException ioe) {
