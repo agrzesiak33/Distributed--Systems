@@ -9,17 +9,22 @@ import java.net.*;
  * @author Prof. Dr.-Ing. Wolf-Dieter Otte
  * @version Feb. 2000
  */
-public class GenericServer implements Runnable {
+public class EchoServer implements Runnable {
 
     protected ServerSocket serverSocket;
     protected int port;
     protected Socket socket;
     protected boolean isStopped;
-
+    
+    public static void main(String args[])
+    {
+    	EchoServer server = new EchoServer(5589);
+    	server.run();
+    }
     /**
      * The constructor
      */
-    public GenericServer(int port) 
+    public EchoServer(int port) 
     {
     	isStopped = false;
         this.port = port;
@@ -34,10 +39,9 @@ public class GenericServer implements Runnable {
             serverSocket = new ServerSocket(port);
 
             while (true) {
-                System.out.println("Waiting for connections on port #" + port);
                 socket = serverSocket.accept();
                 System.out.println("Connection with client established!");
-                new Thread(new Worker(socket)).start();
+                new Thread(new EchoThread(socket)).start();
             }
 
         } catch (IOException ioe) {
