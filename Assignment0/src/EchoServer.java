@@ -37,7 +37,7 @@ public class EchoServer implements Runnable {
     public void run() {
         try {
             serverSocket = new ServerSocket(port);
-
+            System.out.println("Server Started");
             while (true) {
                 socket = serverSocket.accept();
                 System.out.println("Connection with client established!");
