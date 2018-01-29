@@ -25,7 +25,7 @@ public class EchoThread implements Runnable
 			//	Make sure only letters and spaces are send back.
 			int quit = 0;
 			byte inByte;
-			char inChar;
+			char charFromClient;
 			char lowerChar;
 			//String temp = fromClient.readUTF();
 			
@@ -34,13 +34,13 @@ public class EchoThread implements Runnable
 			{
 				//	Listen to the client for letters.  Blocks until then.
 				inByte = fromClient.readByte();
-				inChar = (char)inByte;
+				charFromClient = (char)inByte;
 				
 				//	Only want to proceed with characters that are letters.
-				if((inChar >= 'A' && inChar <= 'Z') || (inChar >= 'a' && inChar <= 'z'))
+				if((charFromClient >= 'A' && charFromClient <= 'Z') || (charFromClient >= 'a' && charFromClient <= 'z'))
 				{
 					//	First we make sure the letter isn't in the sequence to shut down.
-					lowerChar = Character.toLowerCase(inChar);
+					lowerChar = Character.toLowerCase(charFromClient);
 					switch (quit){
 						case 0:
 							quit = (lowerChar == 'q')? 1:0;
