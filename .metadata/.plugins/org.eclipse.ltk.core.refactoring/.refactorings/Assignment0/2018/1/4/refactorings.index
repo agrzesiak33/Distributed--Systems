@@ -1,1 +1,6 @@
 1516766276854	Rename type 'HTTPWorker'
+1516767982173	Rename type 'GenericServer'
+1516768001127	Rename type 'Worker'
+1516768007513	Delete element
+1516768090440	Rename local variable 'dataIn'
+1516768131467	Rename local variable 'out'

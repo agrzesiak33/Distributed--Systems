@@ -1,0 +1,7 @@
+.metadata/
+.recommenders/
+.metadata/.mylyn/.tasks.xml.zip
+*.zip
+*.zip
+*.xml
+.metadata/.mylyn/.tasks.xml.zip
