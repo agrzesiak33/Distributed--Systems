@@ -1,0 +1,83 @@
+import java.net.Socket;
+import java.util.HashSet;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
+
+public class User 
+{
+	
+	BlockingQueue outMessages1;
+	BlockingQueue outMessages2;
+	
+	Socket outSocket1;
+	Socket outSocket2;
+	
+	Socket inSocket1;
+	Socket inSocket2;
+	
+	HashSet receivedMessages;
+	
+	String myHost;
+	int myPort;
+
+	public static void main(String[] args, int argc) 
+	{
+		
+		
+
+	}
+	
+	public void run(String[] args, int argc)
+	{
+		this.outMessages1 = new ArrayBlockingQueue(1024);
+		this.outMessages2 = new ArrayBlockingQueue(1024);
+		
+		this.outSocket1 = new Socket();
+		this.outSocket2 = new Socket();
+		
+		this.inSocket1 = new Socket();
+		this.inSocket2 = new Socket();
+		
+		this.receivedMessages = new HashSet();
+		
+		this.myHost = args[0];
+		this.myPort= Integer.parseInt(args[1]);
+		
+		// If more than 2 arguements is passed in, it means this 
+		//	user want't to connect to an existing network.
+		if(argc == 4)
+		{
+			if(addNodeToNetwork(args[3], Integer.parseInt(args[4])))
+			{
+				System.err.println("Failed to add new node to newtork: " + args[4].toString());
+			}
+		}
+		
+		
+	}
+	
+	private boolean addNodeToNetwork(String connectingHost, int connectingPort)
+	{
+		try{
+			
+			Socket tempSocket = new Socket(connectingHost, connectingPort);
+			
+			return true;
+		}catch(Exception e){
+			
+			return false;
+		}
+	}
+	
+	
+	private class Sender
+	{
+		
+	}
+	
+	private class Receiver
+	{
+		
+	}
+
+}

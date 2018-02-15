@@ -27,12 +27,6 @@ public class User
 
 	}
 	
-	/*
-	 * 0: MY user host name
-	 * 1: MY user port number
-	 * 2: CONNECTING NODES host name
-	 * 3: CONNECTING NODES port number
-	 */
 	public void run(String[] args, int argc) throws IOException
 	{
 		this.outMessages1 = new ArrayBlockingQueue(1024);
@@ -53,14 +47,9 @@ public class User
 		//	user want't to connect to an existing network.
 		if(argc == 4)
 		{
-			if(addMyselfToNetwork(args[2], Integer.parseInt(args[3]), listener))
+			if(addMyselfToNetwork(args[3], Integer.parseInt(args[4]), listener))
 			{
-				System.err.println("Failed to add myself to the network");
-			}
-			else
-			{
-				// Both nodes have been connected and now the classes can be instantiated.
-				
+				System.err.println("Failed to add new node to newtork: " + args[4].toString());
 			}
 		}
 		
@@ -83,25 +72,13 @@ public class User
 	}
 	
 	
-	private class Sender implements Runnable
+	private class Sender
 	{
-
-		@Override
-		public void run() 
-		{
-			
-		}
 		
 	}
 	
-	private class Receiver implements Runnable
+	private class Receiver
 	{
-
-		@Override
-		public void run() 
-		{
-			
-		}
 		
 	}
 
