@@ -72,7 +72,6 @@
           <tags>persp.newWizSC:org.eclipse.mylyn.tasks.ui.wizards.new.repository.task</tags>
           <tags>persp.viewSC:org.eclipse.wb.core.StructureView</tags>
           <tags>persp.viewSC:org.eclipse.wb.core.PaletteView</tags>
-            <children xsi:type="basic:PartSashContainer" xmi:id="_xUfdAgCyEeiKOIfwwre_QQ" containerData="1439" selectedElement="_xUfdAwCyEeiKOIfwwre_QQ">
           <children xsi:type="basic:PartSashContainer" xmi:id="_k2ZeFRQNEeiUfejsrKmKmQ" selectedElement="_k2ZeIRQNEeiUfejsrKmKmQ" horizontal="true">
             <children xsi:type="basic:PartSashContainer" xmi:id="_k2ZeFhQNEeiUfejsrKmKmQ" containerData="1439" selectedElement="_k2ZeFxQNEeiUfejsrKmKmQ">
               <children xsi:type="basic:PartStack" xmi:id="_k2ZeFxQNEeiUfejsrKmKmQ" elementId="left" containerData="6000" selectedElement="_k2ZeGBQNEeiUfejsrKmKmQ">
