@@ -1,0 +1,45 @@
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.net.Socket;
+
+public class Worker implements Runnable
+{
+	protected Socket clientSocket;
+	
+	public Worker(Socket socket)
+	{
+		this.clientSocket = socket;
+	}
+	
+	@Override
+	public void run() {		
+		DataOutputStream out = null;
+		DataInputStream dataIn = null;
+		
+		try
+		{
+			// open data streams for input and output
+			dataIn = new DataInputStream(this.clientSocket.getInputStream());
+			out = new DataOutputStream(this.clientSocket.getOutputStream());
+			
+			//	Read in the GET request coming from the client
+			String dataString = dataIn.readUTF();
+			
+			//	Make sure only letters and spaces are send back.
+			dataString = dataString.replaceAll("[^a-zA-Z]", "");
+
+			out.writeUTF(dataString);
+		}
+		catch (Exception e) {
+			
+		}
+		System.out.println("All done");
+		try {
+			dataIn.close();
+			out.close();
+			this.clientSocket.close();
+		} catch (Exception e) {}
+		
+	}
+
+}
